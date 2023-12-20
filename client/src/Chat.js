@@ -1,14 +1,45 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-
+import CryptoJS, { AES } from 'crypto-js';
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [uniusers,setuniusers]=useState([])
 
+  const generateSecretKey = () => {
+    const keyLength = 32; // 32 bytes = 256 bits (AES-256)
+    const buffer = new Uint8Array(keyLength);
+    crypto.getRandomValues(buffer);
+   /*  return Array.from(buffer, (byte) =>
+        byte.toString(16).padStart(2, '0')
+    ).join(''); */
+    return "";
+};
+  // Place the 'encryptData' function in your project
+const encryptData = (data, secretKey) => {
+  const encryptedData = AES.encrypt(JSON.stringify(data), secretKey).toString();
+  return encryptedData;
+};
+
+const decryptData = (encryptedData, secretKey) => {
+  const decryptedData = AES.decrypt(encryptedData, secretKey).toString(CryptoJS.enc.Utf8);
+  return JSON.parse(decryptedData);
+};
+
   const sendMessage = async () => {
+    let secretKey = "qwertyuiopasdfgh";
+    const encrypted_msg = await encryptData(currentMessage,secretKey);
     if (currentMessage !== "") {
       const messageData = {
+        room: room,
+        author: username,
+        message: encrypted_msg,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      const newmessageData = {
         room: room,
         author: username,
         message: currentMessage,
@@ -16,46 +47,55 @@ function Chat({ socket, username, room }) {
           new Date(Date.now()).getHours() +
           ":" +
           new Date(Date.now()).getMinutes(),
-      };
-
+      }
       await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
+      setMessageList((list) => [...list, newmessageData]);
       setCurrentMessage("");
+      filterUser();
     }
   };
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      console.log(data)
-      setMessageList((list) => [...list, data]);
-      /* if(data){
-        filterUser();
-      } */
+    socket.on("receive_message", async(data) => {
+      let secretKey = "qwertyuiopasdfgh";
+      const decrypted_msg = await decryptData(data.message,secretKey)
+      const newObj = {
+        author:data.author,
+        message:decrypted_msg,
+        room:data.room,
+        time:data.time
+      }
+      setMessageList((list) => [...list,newObj]);
     });
-    
+    filterUser();
   }, [socket]);
-  const filterUser=(data)=>{
-    const temparr =[];
-    messageList.map((x) => temparr.push(x.author));
-    console.log(temparr)
-    const uniq = temparr.filter(onlyUnique);
-    console.log(uniq)
-    setuniusers(uniq)
 
-  }
+
+  const filterUser=()=>{
+      const temparr =[];
+      messageList.map((x) => temparr.push(x.author));
+      const uniq = temparr.filter(onlyUnique);
+
+      setuniusers(uniq)
+    
+}
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <p>Live Chat - Members {uniusers.map(x=>{
+        <p>Live Chat
+        <br/>
+        Room Id :  {room} 
+        <br/>
+        Members :
+        {uniusers.map(x=>{
           return (
-            <>{x }</>
+            <span className="users">{x}</span>
           )
         })} 
-        <br/>
-        Room Id :  {messageList[0]?.room} </p>
+        </p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">

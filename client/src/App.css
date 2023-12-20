@@ -1,3 +1,12 @@
+.main{
+  height: 500px;
+  display: inline-block;
+  margin: 0%;
+  padding: 0%;
+  height: auto;
+  
+  margin: 10px 0;
+}
 .App {
   width: 100vw;
   height: 82vh;
@@ -6,18 +15,45 @@
   font-family: "Open Sans", sans-serif;
   display: grid;
   place-items: center;
+}
+.App .rightside{
+  margin: 0 0 0 50%;
+  width: 400px;
+  height: auto;
+  display: inline-block;
+}
+.App .rightside img{
+  width: 100%;
+  height: auto;
+  transform: rotate(5deg);
+}
+.App .rightside h2{
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px 10% 5px  10%;
+  text-align: center;
+  margin: 0;
+}
+.App .rightside p{
+  padding: 10px ;
+  margin: 0 10%;
+  text-align: center;
+border-radius: 32px;
+  background-color: #0099e3;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+.App .rightside a{
+  color: #fff;
+  font-size: 20px;
+} 
 
-}
-body {
-  margin: 0%;
-  padding: 0%;
-}
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 .back{
   width :60%;
   position:absolute;
-  height: 650px;
-  border: 1px solid #fff;
+  height: 630px;
   margin: 0;
   padding: 0;
 }
@@ -67,8 +103,8 @@ body {
 
 .chat-window {
   width: 400px;
-  margin: 0px 0px 0px 60%;
-  height: 420px;
+  margin: 0px 0px 0px 50%;
+  height: 460px;
   border: 1px solid #eee;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
 }
@@ -77,11 +113,16 @@ body {
   margin: 0;
 }
 .chat-window .chat-header {
-  height: 50px;
+  height: 70px;
   border-radius: 6px;
   background: #263238;
   position: relative;
   cursor: pointer;
+}
+.chat-window .chat-header .users{
+  padding: 0 0 0 5px;
+  margin: 0;
+  color: greenyellow;
 }
 .chat-window .chat-header p {
   display: block;
@@ -169,16 +210,16 @@ body {
 
 .chat-window .chat-footer {
   width: 100%;
-  margin-top: -12px;
-  height: 50px;
-  border: 1px solid #ccc;
+  margin-top:0px;
+  height: 55px;
   border-top: none;
+  padding: 0;
   overflow: hidden;
   display: flex;
 }
 
 .chat-window .chat-footer input {
-  height: 100%;
+  height:80%;
   border: 0;
   padding: 0 0.7em;
   font-size: 1em;
@@ -187,13 +228,15 @@ body {
 }
 
 .chat-window .chat-footer button {
-  border: 0;
-
+  border-radius: 0;
   cursor: pointer;
   height: 100%;
   background: transparent;
   outline: none;
   font-size: 25px;
+  padding: 0 6px 10px 10px;
+  margin: 10px 0 0 0;
+  border: 1px solid lightgray;
   color: lightgray;
 }
 
@@ -202,4 +245,100 @@ body {
 }
 .hide {
   opacity: 0 !important;
+}
+
+@media screen and (max-width:600px) {
+  .App {
+    width: 100vw;
+    height: 100%;
+    background: #fff;
+    border: 1px  solid #000;
+    color: #212121;
+    font-family: "Open Sans", sans-serif;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  .App img{
+    width: 320px;
+    height: auto;
+    margin: 0 0 0 0%;
+    transform: rotate(-5deg);
+  }
+  .back{
+    width :100%;
+    position:absolute;
+    height: 650px;
+    border: 1px solid #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .navbar{
+    margin: 0;
+  }
+}
+
+.foot {
+  border-top: 2px solid #111;
+  border-bottom: 2px solid #111;
+  margin-top: 0px;
+  background-color: #000;
+  display: block;
+  padding: 20px 0 0 0;
+}
+.foot .con p {
+  margin: 10px 0 30px 10px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #fff;
+  padding: 0px 20px;
+}
+.foot .con p a{
+  color: #fff;
+  font-weight: normal;
+}
+
+.foot .con h4 {
+  margin: 10px;
+  font-weight: bold;
+  color: #fff;
+  padding: 0px 20px;
+}
+.foot .con .fa {
+  margin: 20px 20px  0 0;
+  font-size: 26px;
+  color: white;
+  padding: 8px 8px;
+  border-radius: 36px;
+  background-color: #0099e3;
+  
+}
+.foot .copy {
+  display: inline-flex;
+  margin: 0px 0px;
+  padding: 0px 20px;
+  background-color: #111;
+  width: 100%;
+  height: 5vh;
+}
+.foot .copy .fa {
+  font-size: 14px;
+  margin: 10px 10px;
+  color: #fff;
+}
+.foot .copy a {
+  font-size: 15px;
+  color: #fff;
+  margin-top: 5px;
+  letter-spacing: 1px;
+}
+.foot .copy p {
+  color: #fff;
+  font-size: 14px;
+  
+  margin-left: 35px;
+  margin-top: 5px;
+  margin-right: 0;
 }
