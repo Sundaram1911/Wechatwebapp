@@ -9,7 +9,7 @@
 }
 .App {
   width: 100vw;
-  height: 82vh;
+  height: 86vh;
   background: #fff;
   color: #212121;
   font-family: "Open Sans", sans-serif;
@@ -18,26 +18,26 @@
 }
 .App .rightside{
   margin: 0 0 0 50%;
-  width: 400px;
+  width: 360px;
   height: auto;
   display: inline-block;
 }
 .App .rightside img{
   width: 100%;
   height: auto;
-  transform: rotate(5deg);
+  transform: rotate(3deg);
 }
 .App .rightside h2{
   font-size: 26px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
-  padding: 5px 10% 5px  10%;
+  padding: 5px 5% 5px  5%;
   text-align: center;
   margin: 0;
 }
 .App .rightside p{
   padding: 10px ;
-  margin: 0 10%;
+  margin: 0 8%;
   text-align: center;
 border-radius: 32px;
   background-color: #0099e3;

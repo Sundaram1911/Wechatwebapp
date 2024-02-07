@@ -25,7 +25,6 @@ const Login = () => {
             lemail,
             lpassword
           );
-          console.log(user)
           Swal.fire({
             title: 'Successfully logged in',
             icon: 'success'
@@ -34,9 +33,7 @@ const Login = () => {
           setTimeout(()=>{
             navigate('/')
           },1000)
-          console.log(user.user.email);
         } catch (error) {
-          console.log(error.message);
           Swal.fire({
             title: error.message,
             icon: 'warning'
@@ -69,7 +66,7 @@ const Login = () => {
     <div className="overlay-container">
         <div className="overlay">
             <div className="overlay-panel overlay-right">
-                <h1>React Chat Application</h1>
+                <h1>Wechat Application</h1>
                 <p>Login and chat instantly with your loved once.</p>
             </div>
         </div>

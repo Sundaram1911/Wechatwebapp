@@ -26,12 +26,10 @@ const Signup = () => {
             title: 'Welcome ! lets get started',
             icon: 'success'
         })
-          console.log(user);
           setTimeout(()=>{
             navigate('/')
           },1000)
         } catch (error) {
-          console.log(error.message);
           Swal.fire({
             title: error.message,
             icon: 'warning'
@@ -64,7 +62,7 @@ const Signup = () => {
     <div className="overlay-container">
         <div className="overlay">
             <div className="overlay-panel overlay-right">
-                <h1>React Chat Application</h1>
+                <h1>Wechat Application</h1>
                 <p>sign up and chat instantly with your loved once.</p>
             </div>
         </div>
